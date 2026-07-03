@@ -1,0 +1,61 @@
+{
+  "name": "yt-dlp-gui",
+  "version": "1.0.0",
+  "description": "Desktop GUI for yt-dlp — download video and audio with a clean, native-feeling interface",
+  "main": "main.js",
+  "author": "Intcatsite",
+  "license": "MIT",
+  "homepage": "https://github.com/Intcatsite/yt-dlp-gui",
+  "scripts": {
+    "start": "electron .",
+    "postinstall": "electron-builder install-app-deps",
+    "fetch:ytdlp": "node scripts/fetch-ytdlp.js",
+    "build:win": "npm run fetch:ytdlp -- win && electron-builder --win",
+    "build:linux": "npm run fetch:ytdlp -- linux && electron-builder --linux",
+    "build:mac": "npm run fetch:ytdlp -- mac && electron-builder --mac"
+  },
+  "devDependencies": {
+    "electron": "^31.3.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.intcatsite.ytdlpgui",
+    "productName": "yt-dlp GUI",
+    "icon": "build/icon.png",
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**/*",
+      "!**/*.map"
+    ],
+    "extraResources": [
+      {
+        "from": "resources/bin",
+        "to": "bin",
+        "filter": ["**/*"]
+      }
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        { "target": "nsis", "arch": ["x64"] },
+        { "target": "portable", "arch": ["x64"] }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "linux": {
+      "target": ["AppImage"],
+      "category": "Network"
+    },
+    "mac": {
+      "target": ["dmg"]
+    }
+  }
+}

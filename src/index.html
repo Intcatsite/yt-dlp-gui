@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;">
+<title>yt-dlp GUI</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app" id="app">
+    <div class="titlebar" id="titlebar">
+      <div class="traffic-lights">
+        <button class="tl tl-close" id="btn-close" title="Закрыть"></button>
+        <button class="tl tl-min" id="btn-min" title="Свернуть"></button>
+        <button class="tl tl-max" id="btn-max" title="Развернуть"></button>
+      </div>
+      <div class="titlebar-title">yt-dlp GUI</div>
+      <div class="titlebar-actions">
+        <a class="repo-pill" href="https://github.com/Intcatsite/yt-dlp-gui" data-external="1">Intcatsite/yt-dlp-gui</a>
+        <button class="theme-toggle" id="theme-toggle" title="Переключить тему"><div class="knob"></div></button>
+      </div>
+    </div>
+
+    <div class="body">
+      <div class="sidebar">
+        <nav id="nav-list"></nav>
+        <div class="spacer"></div>
+        <a class="repo-pill wide" href="https://github.com/Intcatsite/yt-dlp-gui" data-external="1">Репозиторий на GitHub</a>
+      </div>
+      <div class="content" id="content"></div>
+    </div>
+  </div>
+
+  <div class="toasts" id="toasts"></div>
+
+  <div class="modal-overlay" id="path-modal-overlay" hidden>
+    <div class="modal" id="path-modal"></div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
